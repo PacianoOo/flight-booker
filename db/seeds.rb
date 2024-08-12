@@ -5,13 +5,14 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-Airport.destroy_all
 Flight.destroy_all
+Airport.destroy_all
+
 puts 'All clear'
 
 15.times do |i|
     Airport.create!(airport_code: Faker::Travel::Airport.iata(size: 'large', region: 'united_states'))
-    puts "Created Airport #{i}"
+    puts "#{Airport.last.airport_code}"
 end
 
 airports = Airport.all
@@ -19,14 +20,14 @@ number = ("0" .. "9").to_a
 letter = ("A".."Z").to_a
 duration = (1 .. 15).to_a
 # date = Faker::Date.forward(days: 23)
-2.times do |i|
+5.times do |i|
 Flight.create!(
     flight_number: "#{letter.sample}#{letter.sample}#{number.sample}#{number.sample}#{number.sample}",
-    departure_time: Faker::Time.forward(days: 5,  period: :all, format: :long),
+    departure_time: Faker::Date.forward(days: 10),
     flight_duration: duration.sample,
     departure_airport: airports.sample,
     arrival_airport: airports.sample
 )
-puts i
+puts Flight.last.flight_number
 
 end

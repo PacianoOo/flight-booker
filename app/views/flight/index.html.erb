@@ -1,0 +1,31 @@
+<div class="mt-2 grid grid-row-12">
+  <div class="row-span-2">
+    <h1>Book your flight now!</h1>
+  </div>
+  <%= form_with url: flight_index_path, method: :get, local: true do |f| %>
+    <div class="grid lg:grid-cols-4 border-solid border-2 border-sky-500">
+      <div class="mt-2 border-solid border-2 border-sky-500">
+        <h3>Departure Airports</h3>
+        <%= f.select :departure_airport, options_for_select(@airports.map {|airport_code| [airport_code]}), prompt: "Select Departure Airport" %>
+      </div>
+
+      <div class="mt-2 border-solid border-2 border-sky-500">
+        <h3>Arrival Airports</h3>
+        <%= f.select :departure_airport, options_for_select(@airports.map{|airport_code| [airport_code]}), prompt: "Select Arrival Airport"%>
+      </div>
+
+      <div class="mt-2 border-solid border-2 border-sky-500">
+        <h3>Number of passengers </h3>
+        <%= f.select :passengers, options_for_select(1..4), prompt: "Select Number of Passengers" %>
+      </div>
+
+      <div class="mt-2 border-solid border-2 border-sky-500">
+        <h3>Date of Flight</h3>
+        <%= f.select :departure_date, options_for_select(@flight_date), prompt: "Select Departure Date" %>
+      </div>
+    </div>
+  <% end %>
+  <div class="mt-2 container row-span-10 border-solid border-2 border-sky-500">
+    <h3>this is not a joke </h3>
+  </div>
+</div>
