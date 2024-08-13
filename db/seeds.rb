@@ -20,7 +20,7 @@ number = ("0" .. "9").to_a
 letter = ("A".."Z").to_a
 duration = (1 .. 15).to_a
 # date = Faker::Date.forward(days: 23)
-5.times do |i|
+100.times do |i|
 Flight.create!(
     flight_number: "#{letter.sample}#{letter.sample}#{number.sample}#{number.sample}#{number.sample}",
     departure_time: Faker::Date.forward(days: 10),
