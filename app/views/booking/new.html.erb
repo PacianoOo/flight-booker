@@ -1,0 +1,21 @@
+<h3><%= @flight.flight_number%></h3>
+<h3><%= @flight.flight_duration %> </h3>
+<h3><%= @flight.departure_airport.airport_code %></h3>
+<h3><%= @flight.arrival_airport.airport_code %></h3>
+
+<h4>Passenger Information</h4>
+<%= form_with url: new_booking_path, model: @booking, method: :post, local: true do |f| %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :passenger_count, value: params[:passengers] %> <!-- Adjust as needed -->
+  <%= f.hidden_field :booking_date, value: DateTime.current.to_date %>
+
+  <h2>Passengers:</h2>
+  <%= f.fields_for :passengers do |passenger| %>
+    <%= passenger.label "Name:" %>
+    <%= passenger.text_field :name%>
+
+    <%= passenger.label "Email:" %>
+    <%= passenger.text_field :email%>
+  <% end %>
+  <%= f.submit "Create Booking", class: "mt-4 px-4 py-2 bg-blue-500 text-white" %>
+<% end %>
